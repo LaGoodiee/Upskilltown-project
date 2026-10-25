@@ -1,0 +1,100 @@
+{
+  "entities": {
+    "LeaderboardTop": {
+      "title": "LeaderboardTop",
+      "description": "Top 10 ranking affiliates by confirmed paid client orders.",
+      "type": "object",
+      "properties": {
+        "entries": {
+          "type": "array",
+          "description": "List of top 10 affiliates",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Affiliate full name (names only, no PII or phone numbers)"
+              },
+              "paidCount": {
+                "type": "number",
+                "description": "Number of confirmed paid client conversions"
+              }
+            },
+            "required": ["name", "paidCount"]
+          }
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of the last update"
+        },
+        "updatedBy": {
+          "type": "string",
+          "description": "Admin email who executed the update"
+        }
+      },
+      "required": ["entries", "updatedAt"]
+    },
+    "PartnerApplication": {
+      "title": "PartnerApplication",
+      "description": "Incoming applications from potential affiliates and sales teams.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the application"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["individual_affiliate", "sales_team"],
+          "description": "Type of partnership applied for"
+        },
+        "applicantName": {
+          "type": "string",
+          "description": "Full name of the affiliate or lead"
+        },
+        "phone": {
+          "type": "string",
+          "description": "WhatsApp contact number (Admin-only access)"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Primary promotional channel or team size"
+        },
+        "reach": {
+          "type": "string",
+          "description": "Audience reach or target capability"
+        },
+        "pitch": {
+          "type": "string",
+          "description": "Selling strategy or application reason"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "approved", "rejected"],
+          "description": "Review status by admin"
+        },
+        "appliedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when application was submitted"
+        },
+        "generatedCode": {
+          "type": "string",
+          "description": "Generated affiliate tracking referral code"
+        }
+      },
+      "required": ["applicantName", "phone", "status", "appliedAt"]
+    }
+  },
+  "firestore": {
+    "/leaderboard/{docId}": {
+      "schema": "#/entities/LeaderboardTop",
+      "description": "Stores the single summary leaderboard document ('top') to minimize Spark plan reads."
+    },
+    "/applications/{appId}": {
+      "schema": "#/entities/PartnerApplication",
+      "description": "Stores incoming affiliate and partner applications with restricted admin access."
+    }
+  }
+}

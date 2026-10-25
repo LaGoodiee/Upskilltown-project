@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: Check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Helper: Check if user is the designated admin
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.email == "goodnessndukauba@gmail.com" ||
+        request.auth.token.admin == true
+      );
+    }
+
+    // Validation helper for the single summary leaderboard document
+    function isValidLeaderboard(data) {
+      return data.entries is list &&
+             data.entries.size() <= 10 &&
+             data.updatedAt is string;
+    }
+
+    // Leaderboard document: Single summary document to minimize Spark plan reads
+    // Logged-in users can read, only the admin can write
+    match /leaderboard/top {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin() && isValidLeaderboard(request.resource.data);
+    }
+
+    // Partner & Affiliate applications collection
+    // Public creation with validation; Read, update, and deletion restricted to Admin only
+    match /applications/{appId} {
+      allow create: if request.resource.data.applicantName is string &&
+                       request.resource.data.applicantName.size() >= 2 &&
+                       request.resource.data.phone is string &&
+                       request.resource.data.status == 'pending' &&
+                       request.resource.data.appliedAt is string;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Default deny for all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

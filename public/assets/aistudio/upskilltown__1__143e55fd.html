@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Upskilltown Agency</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='32' fill='%23FF4800'/%3E%3Cpath d='M28 46V57A22 22 0 0 0 72 57V26M56 42L72 26L88 42' stroke='%23FFF' stroke-width='13' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='28' cy='25' r='8' fill='%2314110F'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap">
+<style>
+:root{--bg:#f3f2ef;--fg:#111;--mut:#8b8a85;--card:#fff;--line:#e2e0da;--o:#ff4800;--o2:#d1330a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0b0a;--fg:#f3f2ef;--mut:#8f8d87;--card:#171615;--line:#2a2826;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0b0a;--fg:#f3f2ef;--mut:#8f8d87;--card:#171615;--line:#2a2826;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--fg);font:400 16px/1.55 "Inter Tight",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;overflow-x:hidden;transition:background .4s,color .4s}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--o);outline-offset:3px}
+.w{width:min(1200px,100% - 32px);margin-inline:auto}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:12px;height:64px}
+.logo{font-weight:800;letter-spacing:-.04em;font-size:20px;display:flex;align-items:center;gap:8px;margin-right:auto}
+.lw{display:grid;line-height:1}.lw b{font-size:21px;font-weight:800;letter-spacing:-.05em}.lw small{font-size:8px;font-weight:700;letter-spacing:.5em;color:var(--o);margin-top:4px}
+nav{display:flex;gap:4px}
+nav a{padding:9px 16px;border-radius:99px;font-weight:500;font-size:15px;color:var(--mut);transition:.25s}
+nav a:hover,nav a.on{background:var(--card);color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 22px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-weight:700;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-3px)}
+.btn.p{background:var(--o);border-color:var(--o);color:#fff}
+.btn.p:hover{box-shadow:0 10px 30px rgba(255,106,0,.4)}
+.btn.k{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+#tg,#mb{width:44px;padding:0}
+#mb{display:none}
+.pg{display:none;padding-bottom:70px}.pg.on{display:block}
+h1,h2,h3{letter-spacing:-.045em;line-height:.98;margin:0}
+h1{font-size:clamp(40px,8.4vw,104px);font-weight:700}
+h2{font-size:clamp(30px,5vw,60px);font-weight:700}
+h3{font-size:22px;letter-spacing:-.03em;line-height:1.1}
+.g{color:var(--mut)}
+.hero{position:relative;padding:clamp(40px,8vw,90px) 0 40px;overflow:hidden}
+.hero::before{content:"";position:absolute;width:min(640px,90vw);aspect-ratio:1;right:-10%;top:-10%;border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.55),rgba(209,51,10,.25) 45%,transparent 70%);filter:blur(30px);animation:fl 9s ease-in-out infinite alternate;z-index:-1}
+@keyframes fl{to{transform:translate(-8%,10%) scale(1.15)}}
+.ln{display:block;overflow:hidden}
+.ln>span{display:inline-block;transform:translateY(105%);animation:up .9s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*.12s)}
+@keyframes up{to{transform:none}}
+.sub{max-width:560px;font-size:clamp(16px,2vw,19px);color:var(--mut);margin:26px 0}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.glass{position:absolute;right:0;bottom:30px;padding:18px 22px;border-radius:24px;background:color-mix(in srgb,var(--card) 70%,transparent);border:1px solid var(--line);backdrop-filter:blur(12px);animation:fl 6s ease-in-out infinite alternate}
+.glass b{font-size:44px;letter-spacing:-.05em;color:var(--o);line-height:1;display:block}
+.glass span{font-size:13px;color:var(--mut)}
+.mq{overflow:hidden;border-block:1px solid var(--line);padding:16px 0;margin:30px 0}
+.mq div{display:flex;gap:40px;width:max-content;animation:mq 26s linear infinite;font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.04em}
+.mq span{white-space:nowrap}.mq span:nth-child(even){color:var(--o)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.pills{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:50px 0}
+.pills div{border-radius:99px;padding:clamp(16px,3.5vw,38px) 8px;text-align:center;font-weight:600;font-size:clamp(16px,3vw,32px);background:var(--card);border:1px solid var(--line)}
+.pills .a{background:linear-gradient(135deg,#e8853d,var(--o2));color:#fff;border:0}
+.pills .b{background:#000;color:#fff}.pills .c{color:var(--mut)}
+.sec{padding:clamp(40px,7vw,80px) 0}
+.tag{display:inline-block;padding:6px 14px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:13px;font-weight:500;margin-bottom:18px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:28px;transition:transform .35s,border-color .35s}
+.card:hover{transform:translateY(-6px);border-color:var(--o)}
+.card .e{font-size:34px;margin-bottom:60px;display:block}
+.card p{color:var(--mut);margin:10px 0 0}
+.price{font-size:clamp(38px,5vw,52px);font-weight:700;letter-spacing:-.05em;line-height:1;margin:22px 0 6px;color:var(--o)}
+.was{color:var(--mut);text-decoration:line-through;font-size:18px}
+.badge{display:inline-block;background:var(--o);color:#fff;border-radius:99px;padding:3px 12px;font-size:12px;font-weight:700;margin-left:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.opts button{min-height:40px;padding:0 16px;border-radius:99px;border:1px solid var(--line);background:transparent;cursor:pointer;font-weight:500;transition:.2s}
+.opts button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.trk{position:absolute;left:12%;right:12%;top:35px;border-top:2px dashed var(--line)}
+.trk::after{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--o);box-shadow:0 0 14px var(--o);animation:dot 8s linear infinite}
+@keyframes dot{to{left:calc(100% - 12px)}}
+.st{text-align:center;position:relative}
+.ic{width:70px;height:70px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:28px;background:var(--card);border:1px solid var(--line);animation:lit 8s infinite;animation-delay:calc(var(--i)*2s)}
+@keyframes lit{0%,22%{transform:scale(1.15);background:var(--o);box-shadow:0 0 0 12px rgba(255,106,0,.18)}28%,100%{transform:none;background:var(--card);box-shadow:none}}
+.st b{display:block;font-size:17px}.st small{color:var(--mut)}
+.coin{position:absolute;right:6%;top:-8px;background:var(--o);color:#fff;font-weight:700;border-radius:99px;padding:4px 12px;font-size:14px;animation:pop 8s infinite;animation-delay:6s;opacity:0}
+@keyframes pop{0%{opacity:0;transform:translateY(14px) scale(.7)}6%,20%{opacity:1;transform:none}26%,100%{opacity:0;transform:translateY(-20px)}}
+form{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+form .f{grid-column:1/-1}
+label{display:grid;gap:6px;font-size:14px;font-weight:500}
+input,select,textarea{width:100%;min-height:48px;padding:12px 16px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+textarea{min-height:100px;resize:vertical}
+.est{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-radius:18px;background:var(--bg);border:1px dashed var(--o);font-weight:700}
+.est b{font-size:26px;color:var(--o);letter-spacing:-.04em;text-align:right}
+.fx{display:block;font-size:13px;font-weight:500;letter-spacing:0;color:var(--mut);margin-top:6px}
+.err{color:#d33;font-size:13px;min-height:18px;grid-column:1/-1}
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;font-size:19px;letter-spacing:-.02em;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";color:var(--o);font-size:24px;transition:transform .3s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--mut);margin:10px 0 0;max-width:640px}
+.xmas{border-radius:32px;padding:clamp(26px,5vw,56px);background:linear-gradient(135deg,var(--o),var(--o2) 70%,#6b0f00);color:#fff;position:relative;overflow:hidden}
+.xmas::after{content:"🎁";position:absolute;right:5%;top:10%;font-size:clamp(70px,14vw,160px);animation:fl 4s ease-in-out infinite alternate;opacity:.9}
+.xmas h2{max-width:640px}.xmas p{max-width:520px;opacity:.9}
+.dash{display:none;margin-top:20px;padding:22px;border-radius:22px;background:var(--bg);border:1px solid var(--o)}
+.dash.on{display:block}
+.dash code{display:block;word-break:break-all;font-size:15px;padding:12px;border-radius:12px;background:var(--card);margin:8px 0 14px}
+.rules li{margin:8px 0;color:var(--mut)}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:30px 0}
+.pj .im{aspect-ratio:16/10;border-radius:20px;margin-bottom:18px;background:linear-gradient(135deg,color-mix(in srgb,var(--o) 30%,var(--card)),var(--card));display:grid;place-items:center;font-size:38px}
+.pj .btn{margin-top:16px;min-height:40px}
+.wa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:25;width:58px;height:58px;border-radius:50%;background:#25d366;display:grid;place-items:center;font-size:28px;box-shadow:0 10px 30px rgba(0,0,0,.3);animation:pls 2.4s infinite}
+@keyframes pls{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}100%{box-shadow:0 0 0 22px rgba(37,211,102,0)}}
+footer{border-top:1px solid var(--line);padding:30px 0 90px;color:var(--mut);font-size:14px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}.rv.in{opacity:1;transform:none}
+.refp{display:none;margin-left:8px;font-size:12px;background:var(--o);color:#fff;border-radius:99px;padding:3px 10px}
+@media(max-width:820px){
+nav{position:absolute;top:64px;left:0;right:0;flex-direction:column;padding:12px 16px;background:var(--bg);border-bottom:1px solid var(--line);display:none}
+nav.open{display:flex}nav a{padding:14px 16px}
+#mb{display:inline-flex}.hdr-cta{display:none}
+.steps{grid-template-columns:1fr 1fr;row-gap:34px}.trk{display:none}
+form{grid-template-columns:1fr}.glass{position:static;display:inline-block;margin-top:10px}
+.pills{gap:6px}}
+.tc h3{margin:18px 0 10px}.tc .btn{margin-top:20px;min-height:40px}.pend{border-style:dashed;opacity:.8}
+.who{display:flex;align-items:center;gap:12px;margin-top:22px}.av{width:42px;height:42px;border-radius:50%;background:var(--o);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.mod{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.82);display:none;place-items:center;padding:20px}.mod.on{display:grid}.mod img{max-width:min(560px,100%);max-height:80vh;border-radius:18px;background:var(--card)}.mod .btn{position:absolute;top:max(16px,env(safe-area-inset-top,0px));right:16px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.ln>span,.rv{transform:none;opacity:1}}
+</style>
+</head>
+<body>
+<header><div class="w nav">
+<a class="logo" href="#offer" aria-label="Upskilltown Agency"><svg viewBox="0 0 100 100" width="40" height="40" aria-hidden="true"><rect width="100" height="100" rx="32" fill="#FF4800"/><path d="M28 46V57A22 22 0 0 0 72 57V26M56 42L72 26L88 42" stroke="#fff" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="25" r="8" fill="#14110F"/></svg><span class="lw"><b>Upskilltown</b><small>AGENCY</small></span></a>
+<nav id="nv"><a href="#offer" data-p="offer">Home</a><a href="#affiliates" data-p="affiliates">Affiliates</a><a href="#proof" data-p="proof">Proof of work</a></nav>
+<a class="btn p hdr-cta" id="hc" target="_blank" rel="noopener">Order on WhatsApp</a>
+<button class="btn" id="tg" aria-label="Toggle light and dark mode">🌓</button>
+<button class="btn" id="mb" aria-label="Menu">☰</button>
+</div></header>
+
+<main>
+<section class="pg" id="offer"><div class="w">
+<div class="hero">
+<span class="tag">Websites and landing pages for businesses</span>
+<h1><span class="ln" style="--i:0"><span>We build websites</span></span><span class="ln" style="--i:1"><span>that make your brand</span></span><span class="ln" style="--i:2"><span class="g">look expensive.</span></span></h1>
+<p class="sub">Landing pages, multi-page websites and portfolios that bring you clients. Pick a plan, tell us about your business, and we’ll finish the chat on WhatsApp.</p>
+<div class="row"><button class="btn p" data-go="orderf">Start your project</button><button class="btn" data-go="pricing">View pricing</button></div>
+<div class="glass"><b><span data-c="73">0</span>%</b><span>off today on landing pages</span></div>
+</div>
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+<div class="pills"><div>We</div><div class="a">Create</div><div class="b">→</div><div class="c">Future</div></div>
+
+<div class="sec"><h2 class="rv">What we build</h2><div class="grid" style="margin-top:30px">
+<div class="card rv"><span class="e">⚡</span><h3>Landing pages</h3><p>One focused page, built to turn visitors into customers.</p></div>
+<div class="card rv"><span class="e">🗂️</span><h3>Multi-page websites</h3><p>A full business website with every page your brand needs.</p></div>
+<div class="card rv"><span class="e">🎨</span><h3>Portfolio websites</h3><p>Show your work and get hired, on a site that looks the part.</p></div>
+</div></div>
+
+<div class="sec" id="pricing"><span class="tag">Pricing in naira</span><h2 class="rv">Limited offer prices</h2><div class="grid" id="pc" style="margin-top:30px"></div><p class="g" style="font-size:13px;margin-top:16px">Dollar, shilling and cedi amounts are approximate, based on mid-2026 exchange rates. Naira prices are exact, and final amounts are confirmed on WhatsApp.</p></div>
+
+<div class="sec"><h2 class="rv">How booking works</h2><div class="steps rv" id="s1"></div></div>
+
+<div class="sec" id="orderf"><div class="card"><h2>Start your project</h2><p class="g">Fill this in and we’ll open WhatsApp with your details ready to send.</p>
+<form id="of" novalidate style="margin-top:24px">
+<label>Your name<input id="o_n" autocomplete="name"></label>
+<label>WhatsApp number<input id="o_p" inputmode="tel" autocomplete="tel"></label>
+<label>Service<select id="o_s"></select></label>
+<label>Domain<select id="o_d"></select></label>
+<label>Business name<input id="o_b"></label>
+<label>Deadline<input id="o_dl" placeholder="e.g. 1 week"></label>
+<label class="f">Tell us about your business<textarea id="o_m"></textarea></label>
+<label class="f">Referred by an affiliate? (optional)<input id="o_r" placeholder="Affiliate’s name"></label>
+<div class="est"><span>Estimated price</span><b id="o_e"></b></div>
+<div class="err" id="o_x"></div>
+<button class="btn p f" type="submit">Send on WhatsApp</button>
+</form></div></div>
+
+<div class="sec" id="tm"><span class="tag">Client feedback</span><h2 class="rv">Don’t just take our word for it.</h2><p class="g" style="max-width:520px;margin:14px 0 0">Real feedback from clients we’ve built for, with proof you can open.</p><div class="grid" id="tl" style="margin-top:30px"></div></div>
+<div class="sec"><h2 class="rv">Questions</h2><div style="margin-top:20px">
+<details><summary>How do I order?</summary><p>Fill in the form above and tap Send. WhatsApp opens with your details, and we reply there.</p></details>
+<details><summary>What is a subdomain-only site?</summary><p>Your site goes live on a free address such as yourname.vercel.app instead of your own .com, .net or .online domain.</p></details>
+<details><summary>Can I add my own domain later?</summary><p>Yes. Message us on WhatsApp and we’ll set it up.</p></details>
+</div></div>
+</div></section>
+
+<section class="pg" id="affiliates"><div class="w">
+<div class="hero"><span class="tag">Open to everyone · closes at 50 affiliates</span>
+<h1><span class="ln" style="--i:0"><span>Refer a client.</span></span><span class="ln" style="--i:1"><span class="g">Get paid.</span></span></h1>
+<p class="sub">Our affiliate system is very simple. No matter who you are, you get paid when a client you referred signs up.</p>
+<div class="row"><button class="btn p" data-go="apply">Become an affiliate</button><button class="btn" data-go="team">Sales teams: partner with us</button></div></div>
+
+<div class="grid" id="pay"></div>
+
+<div class="sec"><div class="xmas rv"><h2>Best affiliate wins a Christmas gift.</h2><p id="xp"></p></div></div>
+
+<div class="sec"><h2 class="rv">How it works</h2><div class="steps rv" id="s2"></div></div>
+
+<div class="sec" id="team"><span class="tag">For sales teams and agencies</span>
+<h2 class="rv">Got a sales team? Let’s work together.</h2>
+<p class="g" id="team_p" style="max-width:620px;margin:14px 0 0"></p>
+<div class="grid" id="team_tiers" style="margin-top:30px"></div>
+<div class="grid" style="margin-top:16px;align-items:start">
+<div class="card"><h3>Estimate your team’s pay</h3><p>Enter how many paying clients your team could bring in by the deadline.</p>
+<label style="margin-top:16px">Paying clients<input id="t_c" inputmode="numeric" value="150"></label>
+<div class="est" style="margin-top:14px"><span id="t_l2">Estimated pay</span><b id="t_e"></b></div>
+<p class="g" style="font-size:13px" id="t_note"></p></div>
+<div class="card"><h3>What we’re looking for</h3><ul class="rules"><li>A team or agency with a real sales process, not just one person.</li><li>Able to bring in at least 150 paying clients by 31 December 2026.</li><li>Clients are real and each one pays in full.</li><li>Your team uses the same prices and packages as everyone else.</li><li>You share each client’s name and phone number with us when they order.</li><li>Sales teams are separate from the 50-member individual affiliate list.</li></ul></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Apply as a sales team</h3><p class="g">Tell us about your team. We’ll review it and reply on WhatsApp with the next steps and a short written agreement.</p>
+<form id="tf" novalidate style="margin-top:20px">
+<label>Team or agency name<input id="t_n"></label>
+<label>Team lead’s name<input id="t_o" autocomplete="name"></label>
+<label>WhatsApp number<input id="t_p" inputmode="tel" autocomplete="tel"></label>
+<label>People on your team<input id="t_s" inputmode="numeric"></label>
+<label class="f">Clients you can bring in by 31 December<select id="t_t"><option value="">Choose one</option><option>150 to 299</option><option>300 to 499</option><option>500 or more</option></select></label>
+<label class="f">How does your team sell, and where? (30+ characters)<textarea id="t_m"></textarea></label>
+<div class="err" id="t_x"></div>
+<button class="btn p f" type="submit">Apply on WhatsApp</button>
+</form></div></div>
+
+<div class="sec" id="apply"><div class="grid" style="align-items:start">
+<div class="card"><h3>Apply to join</h3><p class="g">We use this to keep out spam and unserious applications. The affiliate team closes once it reaches 50 members, so apply early.</p>
+<form id="af" novalidate style="margin-top:20px;grid-template-columns:1fr">
+<label>Full name<input id="a_n" autocomplete="name"></label>
+<label>WhatsApp number<input id="a_p" inputmode="tel"></label>
+<label>Where will you promote?<select id="a_w"><option value="">Choose one</option><option>WhatsApp status/groups</option><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>X (Twitter)</option><option>In person / network</option></select></label>
+<label>How many people can you reach?<input id="a_a" inputmode="numeric"></label>
+<label>Why should we approve you? (30+ characters)<textarea id="a_y"></textarea></label>
+<label>Quick check: <span id="cq"></span><input id="a_c" inputmode="numeric"></label>
+<label style="display:flex;gap:10px;align-items:flex-start;font-weight:400"><input type="checkbox" id="a_k" style="width:20px;min-height:20px;margin-top:3px">I agree to the rules and understand fake referrals are disqualified.</label>
+<button class="btn p" id="a_b" type="submit" disabled>Apply on WhatsApp</button>
+</form>
+<div class="dash" id="dash"><b>You’re in. Your referral code:</b><code id="d_c"></code><b>Your referral link:</b><code id="d_l"></code>
+<div class="row"><button class="btn" id="d_cp">Copy link</button><button class="btn p" id="d_sh">Share on WhatsApp</button></div>
+<p class="g" style="margin-bottom:0">Send the link to your client, or ask them to mention your code when ordering.</p></div></div>
+<div style="display:grid;gap:16px">
+<div class="card"><h3>Register your client</h3><p>Brought a client? Send us their name and phone number. When they order, we match their details to you.</p>
+<form id="vf" novalidate style="grid-template-columns:1fr;margin-top:14px"><label>Your name<input id="v_a"></label><label>Your phone number<input id="v_ap" inputmode="tel"></label><label>Client’s name<input id="v_n"></label><label>Client’s phone number<input id="v_c" inputmode="tel"></label><div class="err" id="v_x"></div><button class="btn k" type="submit">Register client on WhatsApp</button></form></div>
+<div class="card"><h3>Payout steps</h3><ol class="rules"><li>Register your client’s name and phone number</li><li>Client orders and we match their details</li><li>Client pays</li><li>You get paid within 48 hours</li></ol></div>
+<div class="card"><h3>Rules</h3><ul class="rules"><li>Only real, paying clients count.</li><li>The affiliate team is capped at 50 members. Applications close once it’s full.</li><li>Register each client’s name and phone number with us before or when they order.</li><li>No spam or fake leads. Self-referrals don’t count.</li><li>Payout is made after the client’s payment is confirmed.</li><li>Best affiliate is decided by confirmed paying clients. Upskilltown Agency makes the final call.</li></ul></div>
+</div></div></div>
+</div></section>
+
+<section class="pg" id="proof"><div class="w">
+<div class="hero"><span class="tag">Proof of work</span>
+<h1><span class="ln" style="--i:0"><span>Sites we’ve</span></span><span class="ln" style="--i:1"><span class="g">shipped.</span></span></h1>
+<p class="sub">Real projects will appear here soon.</p></div>
+<div class="tabs" id="tb"></div><div class="grid" id="pj"></div>
+<div class="sec" style="text-align:center"><h2>Want yours here?</h2><div class="row" style="justify-content:center;margin-top:20px"><a class="btn p" id="pc2" target="_blank" rel="noopener">Order on WhatsApp</a></div></div>
+</div></section>
+</main>
+
+<div class="mod" id="md" role="dialog" aria-label="Testimonial proof"><button class="btn" id="mx" aria-label="Close">✕</button><img id="mi" alt="Screenshot proof of the testimonial"></div>
+<a class="wa" id="wf" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+<footer><div class="w">Upskilltown Agency · Order any time on WhatsApp: 07068276281</div></footer>
+
+<script>
+const CONFIG={wa:"2347068276281",prefix:"UPT",fx:{usd:1365,kes:0.0948,ghs:0.0083},
+svc:{landing:{name:"Landing Page",was:75000,o:{sub:["Subdomain only",20000],com:[".com",45000],net:[".net",45000],online:[".online",35000]}},
+multi:{name:"Multi-Page Website",was:160000,o:{none:["Subdomain only",50000],com:[".com",67000],net:[".net",67000],online:[".online",55000]}},
+port:{name:"Portfolio Website",was:40000,o:{none:["Subdomain only",20000],online:[".online",25000],com:[".com",35000],net:[".net",35000]}}},
+team:{min:150,deadline:"31 December 2026",tiers:[[150,20],[300,25]]},
+pay:[["Multi-Page Website",10000,300000],["Landing Page",5000,150000],["Portfolio Website",3000,90000]]};
+const PROJECTS=[{t:"Your project here",c:"landing",u:"",d:"A landing page we built will show here."},{t:"Your project here",c:"multi",u:"",d:"A multi-page website will show here."},{t:"Your project here",c:"port",u:"",d:"A portfolio website will show here."},{t:"Your project here",c:"landing",u:"",d:"Add the live link and a short description."},{t:"Your project here",c:"multi",u:"",d:"Add the live link and a short description."},{t:"Your project here",c:"port",u:"",d:"Add the live link and a short description."}];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const N=n=>"₦"+n.toLocaleString("en-US");
+const U=n=>"$"+Math.round(n/CONFIG.fx.usd).toLocaleString("en-US");
+const F=n=>"₦"+n.toLocaleString("en-US")+" · KSh "+Math.round(n*CONFIG.fx.kes).toLocaleString("en-US")+" · GH₵ "+Math.round(n*CONFIG.fx.ghs).toLocaleString("en-US");
+const wa=t=>"https://wa.me/"+CONFIG.wa+(t?"?text="+encodeURIComponent(t):"");
+const go=t=>window.open(wa(t),"_blank","noopener");
+const ls={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+["hc","pc2","wf"].forEach(i=>$("#"+i).href=wa("Hello Upskilltown Agency, I’d like to order a website."));
+$("#mq").innerHTML=Array(2).fill(["Landing pages","Multi-page websites","Portfolio websites","Built to get clients"].map(x=>"<span>"+x+"</span>").join("")).join("");
+/* theme */
+const root=document.documentElement,sv=ls.g("th");if(sv)root.dataset.theme=sv;
+$("#tg").onclick=()=>{const cur=root.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"),n=cur==="dark"?"light":"dark";root.dataset.theme=n;ls.s("th",n)};
+$("#mb").onclick=()=>$("#nv").classList.toggle("open");
+/* routing + referral */
+
+function route(){let h=location.hash.slice(1);
+if(!["offer","affiliates","proof"].includes(h))h="offer";
+$$(".pg").forEach(p=>p.classList.toggle("on",p.id===h));$$("nav a").forEach(a=>a.classList.toggle("on",a.dataset.p===h));
+$("#nv").classList.remove("open");scrollTo(0,0);setTimeout(obs,50)}
+addEventListener("hashchange",route);
+$$("[data-go]").forEach(b=>b.onclick=()=>$("#"+b.dataset.go).scrollIntoView({behavior:"smooth"}));
+/* reveal + counters */
+let io;function obs(){if(!("IntersectionObserver"in window)){$$(".rv").forEach(e=>e.classList.add("in"));return}
+io=io||new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+$$(".pg.on .rv:not(.in)").forEach(e=>io.observe(e));
+$$(".pg.on [data-c]").forEach(el=>{if(el.dataset.d)return;el.dataset.d=1;const t=+el.dataset.c;let v=0;const iv=setInterval(()=>{v+=2;if(v>=t){v=t;clearInterval(iv)}el.textContent=v},25)})}
+/* pricing */
+$("#pc").innerHTML=Object.entries(CONFIG.svc).map(([k,s])=>{const ks=Object.keys(s.o);return`<div class="card rv" data-k="${k}"><h3>${s.name}</h3><div class="price"></div><div><span class="was">${U(s.was)}</span><span class="badge">Limited offer</span></div><div class="opts">${ks.map((d,i)=>`<button data-d="${d}" class="${i?"":"on"}">${s.o[d][0]}</button>`).join("")}</div><button class="btn p" style="margin-top:22px;width:100%" data-ord="${k}">Order this</button></div>`}).join("");
+$$("#pc .card").forEach(c=>{const s=CONFIG.svc[c.dataset.k];const up=d=>{c.querySelector(".price").innerHTML=U(s.o[d][1])+'<small class="fx">'+F(s.o[d][1])+'</small>'};up(Object.keys(s.o)[0]);
+c.querySelectorAll(".opts button").forEach(b=>b.onclick=()=>{c.querySelectorAll(".opts button").forEach(x=>x.classList.remove("on"));b.classList.add("on");up(b.dataset.d)});
+c.querySelector("[data-ord]").onclick=()=>{$("#o_s").value=c.dataset.k;fillD();$("#o_d").value=c.querySelector(".opts .on").dataset.d;est();$("#orderf").scrollIntoView({behavior:"smooth"})}});
+/* steps */
+function steps(id,a,coin){$(id).innerHTML='<div class="trk"></div>'+a.map((x,i)=>`<div class="st" style="--i:${i}"><div class="ic">${x[0]}</div><b>${x[1]}</b><small>${x[2]}</small></div>`).join("")+(coin?'<div class="coin">+₦10,000</div>':"")}
+steps("#s1",[["📝","Fill the form","Tell us what you need"],["💬","Chat on WhatsApp","We confirm the details"],["🛠️","We build","Your site takes shape"],["🚀","Go live","Launch and share it"]]);
+steps("#s2",[["📋","Apply","Join in a minute"],["🔗","Share your link","Send it to a client"],["🤝","Client signs up","They order with your code"],["💰","You get paid","After their payment"]],1);
+$("#pay").innerHTML=CONFIG.pay.map(p=>`<div class="card rv"><p style="margin:0 0 40px">${p[0]}</p><div class="price" style="margin:0">${U(p[1])}<small class="fx">${F(p[1])}</small></div><p>per client</p><div style="border-top:1px solid var(--line);padding-top:14px"><b>Up to ${U(p[2])} a month</b><small class="fx">${F(p[2])}</small><p style="margin:4px 0 0">Bring in one client every day.</p></div></div>`).join("");
+$("#xp").innerHTML=U(200000)+" ("+F(200000)+") or a brand new laptop for the affiliate with the most paying clients.";
+/* sales team */
+const T=CONFIG.team,AVG=Object.values(CONFIG.svc).flatMap(x=>Object.values(x.o).map(v=>v[1])),AVGP=Math.round(AVG.reduce((a,b)=>a+b,0)/AVG.length),AVGA=Math.round(CONFIG.pay.reduce((a,b)=>a+b[1],0)/CONFIG.pay.length);
+const rate=n=>{let r=0;T.tiers.forEach(t=>{if(n>=t[0])r=t[1]});return r};
+$("#team_p").textContent="Run a sales team or agency? Bring in "+T.min+" or more paying clients by "+T.deadline+" and your team earns a percentage of every sale, not the standard affiliate pay.";
+$("#team_tiers").innerHTML=[["Under "+T.min+" clients","Standard affiliate pay","You still earn the normal per-client affiliate pay on every client."]].concat(T.tiers.map((t,i)=>{const nx=T.tiers[i+1];return[t[0]+(nx?" to "+(nx[0]-1):"+")+" clients",t[1]+"% of every sale","Once you reach "+t[0]+", we top up every client you brought to this rate."]})).map((x,i,a)=>`<div class="card rv"><p style="margin:0 0 30px">${x[0]}</p><div class="price" style="margin:0;${i?"":"color:var(--fg)"}">${x[1].replace(/^(\d+%)(.*)$/,"$1<small class=\"fx\">$2</small>")}</div><p>${x[2]}</p></div>`).join("");
+function tEst(){const n=Math.max(0,parseInt($("#t_c").value.replace(/\D/g,""))||0),r=rate(n),v=r?Math.round(n*AVGP*r/100):n*AVGA;
+$("#t_e").innerHTML=U(v)+'<small class="fx">'+F(v)+'</small>';
+$("#t_note").textContent=(r?"At "+r+"% of an average sale of "+N(AVGP)+".":"Below "+T.min+" clients, standard affiliate pay applies (average "+N(AVGA)+" per client).")+" This is an estimate. Real pay depends on the packages your clients choose."}
+$("#t_c").addEventListener("input",tEst);tEst();
+$("#tf").onsubmit=e=>{e.preventDefault();const v=i=>$("#"+i).value.trim();
+if(v("t_n").length<2||v("t_o").length<2||v("t_p").replace(/\D/g,"").length<10||!v("t_s")||!v("t_t")||v("t_m").length<30){$("#t_x").textContent="Fill in every field, with a valid WhatsApp number and at least 30 characters about how you sell.";return}
+$("#t_x").textContent="";go(["Sales team application","Team: "+v("t_n"),"Lead: "+v("t_o"),"WhatsApp: "+v("t_p"),"Team size: "+v("t_s"),"Can deliver by 31 Dec: "+v("t_t"),"How we sell: "+v("t_m")].join("\n"))};
+/* order form */
+const sel=$("#o_s");sel.innerHTML=Object.entries(CONFIG.svc).map(([k,s])=>`<option value="${k}">${s.name}</option>`).join("");
+function fillD(){const o=CONFIG.svc[sel.value].o;$("#o_d").innerHTML=Object.entries(o).map(([k,v])=>`<option value="${k}">${v[0]}</option>`).join("")+'<option value="x">Not sure yet</option>'}
+function est(){const s=CONFIG.svc[sel.value],d=$("#o_d").value;{const v=(s.o[d]||Object.values(s.o)[0])[1];$("#o_e").innerHTML=U(v)+(d==="x"?" and up":"")+' <small class="fx">'+F(v)+'</small>'}}
+sel.onchange=()=>{fillD();est()};$("#o_d").onchange=est;fillD();est();
+$("#of").onsubmit=e=>{e.preventDefault();const n=$("#o_n").value.trim(),p=$("#o_p").value.trim();if(n.length<2||p.replace(/\D/g,"").length<10){$("#o_x").textContent="Enter your name and a valid WhatsApp number.";return}
+$("#o_x").textContent="";const s=CONFIG.svc[sel.value],r=$("#o_r").value.trim(),dn=$("#o_d").selectedOptions[0].textContent;
+go(["New order: Upskilltown Agency","Name: "+n,"WhatsApp: "+p,"Service: "+s.name,"Domain: "+dn,"Estimate: "+$("#o_e").textContent,"Business: "+$("#o_b").value,"Deadline: "+$("#o_dl").value,"Details: "+$("#o_m").value].concat(r?["Referred by: "+r]:[]).join("\n"))};
+/* affiliate form */
+const A=1+Math.floor(Math.random()*9),B=1+Math.floor(Math.random()*9);$("#cq").textContent="what is "+A+" + "+B+"?";
+const ids=["a_n","a_p","a_w","a_a","a_y","a_c"];
+function ok(){return $("#a_n").value.trim().length>1&&$("#a_p").value.replace(/\D/g,"").length>=10&&$("#a_w").value&&$("#a_a").value.trim()&&$("#a_y").value.trim().length>=30&&+$("#a_c").value===A+B&&$("#a_k").checked}
+[...ids,"a_k"].forEach(i=>{$("#"+i).addEventListener("input",()=>$("#a_b").disabled=!ok());$("#"+i).addEventListener("change",()=>$("#a_b").disabled=!ok())});
+
+
+$("#af").onsubmit=e=>{e.preventDefault();if(!ok())return;const n=$("#a_n").value.trim();
+
+go(["Affiliate application","Name: "+n,"WhatsApp: "+$("#a_p").value,"Promoting on: "+$("#a_w").value,"Reach: "+$("#a_a").value,"Why: "+$("#a_y").value].join("\n"))};
+
+
+$("#vf").onsubmit=e=>{e.preventDefault();const a=$("#v_a").value.trim(),ap=$("#v_ap").value.trim(),n=$("#v_n").value.trim(),c=$("#v_c").value.trim();if(a.length<2||n.length<2||ap.replace(/\D/g,"").length<10||c.replace(/\D/g,"").length<10){$("#v_x").textContent="Fill in all four fields with valid phone numbers.";return}$("#v_x").textContent="";go(["Affiliate client registration","Affiliate: "+a,"Affiliate phone: "+ap,"Client: "+n,"Client phone: "+c].join("\n"))};
+/* testimonials: fill this array when you get feedback. p = proof screenshot (data: URI or image path on your own host) */
+const TESTIMONIALS=[{},{},{}];
+/* example: {s:"WhatsApp",t:"Short quote",q:"Full testimonial text",n:"Client name",r:"Landing page client",p:"proof.jpg"} */
+function tm(){$("#tl").innerHTML=TESTIMONIALS.map((x,i)=>{const e=!x.q;return `<div class="card tc rv ${e?"pend":""}"><div style="display:flex;justify-content:space-between;align-items:center"><span style="color:var(--o);letter-spacing:3px">${e?"☆☆☆☆☆":"★★★★★"}</span><span class="tag" style="margin:0">${x.s||"WhatsApp"}</span></div><h3>${e?"Your first testimonial goes here":"“"+x.t+"”"}</h3><p>${e?"Real client feedback will appear here once our first projects are delivered.":x.q}</p><div class="who"><div class="av">${(x.n||"C")[0]}</div><div><b>${x.n||"Client name"}</b><br><small class="g">${x.r||"Service ordered"}</small></div></div><button class="btn" data-i="${i}" ${x.p?"":"disabled"}>${x.p?"View proof":"Proof coming soon"}</button></div>`}).join("");
+$("#tl").querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>{const p=TESTIMONIALS[b.dataset.i].p;if(p){$("#mi").src=p;$("#md").classList.add("on")}})}
+tm();
+const cm=()=>{$("#md").classList.remove("on");$("#mi").removeAttribute("src")};$("#mx").onclick=cm;$("#md").onclick=e=>{if(e.target.id==="md")cm()};addEventListener("keydown",e=>{if(e.key==="Escape")cm()});
+/* proof */
+let cat="all";const cats={all:"All",landing:"Landing pages",multi:"Multi-page",port:"Portfolio"};
+function proof(){$("#tb").innerHTML=Object.entries(cats).map(([k,v])=>`<button class="btn ${k===cat?"k":""}" data-k="${k}">${v}</button>`).join("");
+$("#tb").querySelectorAll("button").forEach(b=>b.onclick=()=>{cat=b.dataset.k;proof()});
+$("#pj").innerHTML=PROJECTS.filter(p=>cat==="all"||p.c===cat).map(p=>`<div class="card pj"><div class="im">🖼️</div><span class="tag" style="margin:0 0 10px">${cats[p.c]}</span><h3>${p.t}</h3><p>${p.d}</p>${p.u?`<a class="btn" href="${p.u}" target="_blank" rel="noopener">Visit site</a>`:`<button class="btn" disabled>Coming soon</button>`}</div>`).join("")}
+proof();
+
+
+route();
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "Upskilltown Agency",
+  "description": "High-converting websites and landing pages for businesses. Direct WhatsApp booking, affiliate program, and sales team partnership.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
