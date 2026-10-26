@@ -90,7 +90,7 @@
   "firestore": {
     "/leaderboard/{docId}": {
       "schema": "#/entities/LeaderboardTop",
-      "description": "Stores the single summary leaderboard document ('top') to minimize Spark plan reads."
+      "description": "Stores the single summary leaderboard document ('top') to minimize Spark plan reads. Publicly readable by all visitors and partners; write-restricted to admin."
     },
     "/applications/{appId}": {
       "schema": "#/entities/PartnerApplication",

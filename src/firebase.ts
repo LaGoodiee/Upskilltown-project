@@ -1,16 +1,14 @@
 // ============================================================================
 // FIREBASE CONFIGURATION (Spark Plan - Free Tier Only)
-// Paste your Firebase web app configuration keys below to connect:
-// (Provisioned project: pragmatic-boulevard-4gtt6)
+// Connected project: upskilltown-5af2d
 // ============================================================================
 export const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyB1MIPe_mfyB3Liu-yIuDX24LUyTwPSYPw", // Paste your apiKey here to connect live backend
-  authDomain: "pragmatic-boulevard-4gtt6.firebaseapp.com",
-  projectId: "pragmatic-boulevard-4gtt6",
-  storageBucket: "pragmatic-boulevard-4gtt6.firebasestorage.app",
-  messagingSenderId: "590722552234",
-  appId: "1:590722552234:web:da7fbe98d3dcea25d15bd3",
-  firestoreDatabaseId: "ai-studio-upskilltown-71f69cbc-415b-45ff-9e94-8c0649d7e29a",
+  apiKey: "AIzaSyByRrfxLf62ro7bvdGUtTH6PviWtLZDlhw",
+  authDomain: "upskilltown-5af2d.firebaseapp.com",
+  projectId: "upskilltown-5af2d",
+  storageBucket: "upskilltown-5af2d.firebasestorage.app",
+  messagingSenderId: "75522889307",
+  appId: "1:75522889307:web:ce4e434364238cc694517e",
 };
 
 // Pinned Firebase v10 Modular SDK CDN URLs (Auth and Firestore only)
@@ -49,11 +47,30 @@ export enum OperationType {
   WRITE = 'write',
 }
 
+export interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo?: {
+    userId?: string | null;
+    email?: string | null;
+    emailVerified?: boolean | null;
+    isAnonymous?: boolean | null;
+  };
+}
+
 export function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
-  const errInfo = {
+  const currentAuth = authInstance?.currentUser;
+  const errInfo: FirestoreErrorInfo = {
     error: error instanceof Error ? error.message : String(error),
     operationType,
     path,
+    authInfo: {
+      userId: currentAuth?.uid || null,
+      email: currentAuth?.email || null,
+      emailVerified: currentAuth?.emailVerified || null,
+      isAnonymous: currentAuth?.isAnonymous || null,
+    },
   };
   console.error('Firestore Error:', JSON.stringify(errInfo));
   return errInfo;
@@ -113,8 +130,8 @@ export async function getFirebaseServices() {
 
     appInstance = getApps().length > 0 ? getApp() : initializeApp(FIREBASE_CONFIG);
     authInstance = getAuth(appInstance);
-    dbInstance = FIREBASE_CONFIG.firestoreDatabaseId
-      ? getFirestore(appInstance, FIREBASE_CONFIG.firestoreDatabaseId)
+    dbInstance = (FIREBASE_CONFIG as Record<string, any>).firestoreDatabaseId
+      ? getFirestore(appInstance, (FIREBASE_CONFIG as Record<string, any>).firestoreDatabaseId)
       : getFirestore(appInstance);
 
     return {
@@ -389,4 +406,29 @@ export async function updatePartnerApplicationStatus(
     return { success: false, error: err?.message || 'Failed to update application status.' };
   }
 }
+
+/**
+ * Initiates Google sign-in via popup using Firebase Auth.
+ */
+export async function signInWithGooglePopup(): Promise<{ user: any | null; error: string | null }> {
+  if (!isFirebaseConfigured) {
+    return { user: null, error: 'Firebase is not configured yet' };
+  }
+  const { auth } = await getFirebaseServices();
+  if (!auth) {
+    return { user: null, error: 'Firebase Auth is not available' };
+  }
+  try {
+    const { GoogleAuthProvider, signInWithPopup } = await import(
+      /* @vite-ignore */ FIREBASE_CDN_VERSIONS.auth
+    );
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    return { user: result.user, error: null };
+  } catch (err: any) {
+    console.warn('Google sign-in popup error:', err);
+    return { user: null, error: err?.message || 'Failed to sign in with Google' };
+  }
+}
+
 

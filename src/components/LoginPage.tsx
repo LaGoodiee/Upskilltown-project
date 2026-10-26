@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { CONFIG } from '../data';
+import { signInWithGooglePopup } from '../firebase';
 import { FirebaseStatusBanner } from './FirebaseStatusBanner';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -32,8 +33,19 @@ export const LoginPage: React.FC = () => {
     }, 400);
   };
 
-  const handleGoogleSignIn = () => {
-    // In live Firebase mode, uses signInWithPopup; in preview, signs in seamlessly
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user: googleUser } = await signInWithGooglePopup();
+      if (googleUser && googleUser.email) {
+        const isAdmin = googleUser.email.toLowerCase() === CONFIG.adminEmail.toLowerCase();
+        login(googleUser.email, isAdmin ? 'admin' : 'affiliate');
+        window.location.hash = isAdmin ? 'admin' : 'dashboard';
+        return;
+      }
+    } catch {
+      // fallback to preview mode
+    }
+    // In preview mode or fallback, signs in seamlessly
     login('affiliate.partner@gmail.com', 'affiliate');
     window.location.hash = 'dashboard';
   };

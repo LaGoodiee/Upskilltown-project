@@ -24,9 +24,9 @@ service cloud.firestore {
     }
 
     // Leaderboard document: Single summary document to minimize Spark plan reads
-    // Logged-in users can read, only the admin can write
+    // Public read so partners and visitors can view rankings without authentication barriers; only admin can write
     match /leaderboard/top {
-      allow read: if isAuthenticated();
+      allow read: if true;
       allow write: if isAdmin() && isValidLeaderboard(request.resource.data);
     }
 

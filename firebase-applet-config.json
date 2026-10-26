@@ -1,12 +1,8 @@
 {
-  "projectId": "pragmatic-boulevard-4gtt6",
-  "appId": "1:590722552234:web:da7fbe98d3dcea25d15bd3",
-  "apiKey": "AIzaSyB1MIPe_mfyB3Liu-yIuDX24LUyTwPSYPw",
-  "authDomain": "pragmatic-boulevard-4gtt6.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-upskilltown-71f69cbc-415b-45ff-9e94-8c0649d7e29a",
-  "storageBucket": "pragmatic-boulevard-4gtt6.firebasestorage.app",
-  "messagingSenderId": "590722552234",
-  "measurementId": "",
-  "oAuthClientId": "590722552234-vi0fadd6vr03dt0efkdug1pvih2iam9f.apps.googleusercontent.com",
-  "recaptchaSiteKey": ""
+  "projectId": "upskilltown-5af2d",
+  "appId": "1:75522889307:web:ce4e434364238cc694517e",
+  "apiKey": "AIzaSyByRrfxLf62ro7bvdGUtTH6PviWtLZDlhw",
+  "authDomain": "upskilltown-5af2d.firebaseapp.com",
+  "storageBucket": "upskilltown-5af2d.firebasestorage.app",
+  "messagingSenderId": "75522889307"
 }
